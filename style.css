@@ -1,0 +1,583 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0c3fc 100%);
+    color: #222;
+    padding-top: 120px;
+    /* tạo khoảng trống cho header cố định */
+}
+
+:root {
+    --main-color: #7f53ac;
+    --accent-color: #647dee;
+    --button-hover: #5e3a9c;
+    --nav-bg: #fff;
+    --nav-shadow: 0 2px 12px rgba(127, 83, 172, 0.08);
+}
+
+header {
+    background: var(--main-color);
+    color: #fff;
+    padding: 32px 0 16px 0;
+    text-align: center;
+    box-shadow: var(--nav-shadow);
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 100;
+}
+
+nav {
+    margin-top: 18px;
+    background: var(--nav-bg);
+    box-shadow: var(--nav-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    padding: 8px 0;
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 12px;
+}
+
+.main-nav {
+    margin-top: 18px;
+    background: var(--nav-bg);
+    box-shadow: var(--nav-shadow);
+    border-radius: 24px;
+    padding: 0;
+    width: 90vw;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 12px;
+    z-index: 10;
+}
+
+.main-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0 16px;
+}
+
+.main-nav li {
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+}
+
+.main-nav .nav-link {
+    display: block;
+    padding: 12px 20px;
+    border-radius: 18px;
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.main-nav .nav-link.active,
+.main-nav .nav-link:hover {
+    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(127, 83, 172, 0.10);
+}
+
+#cart-btn {
+    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(127, 83, 172, 0.10);
+    transition: background 0.2s, transform 0.2s;
+}
+
+#cart-btn:hover {
+    background: var(--button-hover);
+    transform: translateY(-2px) scale(1.04);
+}
+
+main {
+    display: flex;
+    align-items: flex-start;
+}
+
+.brand-sidebar {
+    min-width: 180px;
+    max-width: 220px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(127, 83, 172, 0.08);
+    margin: 92px 24px 32px 32px;
+    padding: 18px 12px 18px 12px;
+    position: fixed;
+    top: 120px;
+    /* hoặc điều chỉnh phù hợp với header fixed */
+    left: 32px;
+    height: auto;
+    z-index: 99;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 40px;
+    margin: 120px 0 120px 0;
+    /* tăng khoảng cách phía dưới để tránh footer */
+    margin-left: 300px !important;
+    /* chừa chỗ cho nav dọc cố định */
+}
+
+.product-list.with-margin {
+    margin-left: 300px !important;
+    transition: margin-left 0.3s;
+}
+
+.product {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(100, 125, 222, 0.10);
+    width: 270px;
+    padding: 24px 18px 18px 18px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    border: 1.5px solid #f3e9ff;
+}
+
+.product:hover {
+    box-shadow: 0 8px 32px rgba(127, 83, 172, 0.18);
+    transform: translateY(-4px) scale(1.03);
+}
+
+.product img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.product h3 {
+    margin: 10px 0 8px 0;
+    font-size: 1.1rem;
+}
+
+.product .price {
+    color: var(--main-color);
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.product button {
+    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(127, 83, 172, 0.10);
+}
+
+.product button:hover {
+    background: var(--button-hover);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.product .detail-btn {
+    margin-top: 10px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(100, 125, 222, 0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 32px 24px;
+    border-radius: 18px;
+    min-width: 320px;
+    max-width: 90vw;
+    position: relative;
+    box-shadow: 0 4px 24px rgba(127, 83, 172, 0.10);
+}
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+}
+
+#cart-items li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-total {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 12px;
+}
+
+footer {
+    background: var(--main-color);
+    color: #fff;
+    text-align: center;
+    padding: 16px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+/* Nút trong modal chi tiết sản phẩm */
+.product-detail-modal .modal-content button,
+.checkout-btn {
+    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 8px 8px 0 0;
+    box-shadow: 0 2px 8px rgba(127, 83, 172, 0.10);
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+}
+
+.product-detail-modal .modal-content button:hover,
+.checkout-btn:hover {
+    background: var(--button-hover);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.product-detail-modal .close {
+    color: var(--main-color);
+    background: #f3e9ff;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    top: 8px;
+    right: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.product-detail-modal .close:hover {
+    background: var(--main-color);
+    color: #fff;
+}
+
+.brand-sidebar h3 {
+    margin-top: 0;
+    color: var(--main-color);
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.brand-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.brand-sidebar li {
+    margin-bottom: 10px;
+}
+
+.brand-sidebar .brand-link {
+    display: block;
+    padding: 10px 16px;
+    border-radius: 12px;
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.brand-sidebar .brand-link.active,
+.brand-sidebar .brand-link:hover {
+    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+    color: #fff;
+}
+
+.banner-ad {
+    width: 100vw;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1100px;
+    width: 100%;
+    padding: 32px 24px;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 8px 32px rgba(127, 83, 172, 0.10);
+}
+
+.banner-img {
+    width: 420px;
+    max-width: 40vw;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(127, 83, 172, 0.10);
+}
+
+.banner-text {
+    flex: 1;
+    text-align: left;
+}
+
+.banner-text h2 {
+    font-size: 2.2rem;
+    color: var(--main-color);
+    margin-bottom: 18px;
+}
+
+.banner-text p {
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+}
+
+.banner-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+    color: #fff;
+    padding: 12px 32px;
+    border-radius: 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(127, 83, 172, 0.10);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.banner-btn:hover {
+    background: var(--button-hover);
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Sidebar hãng màn hình giống sidebar laptop */
+.display-brand-sidebar {
+    min-width: 180px;
+    max-width: 220px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(127, 83, 172, 0.08);
+    margin: 92px 24px 32px 32px;
+    padding: 18px 12px 18px 12px;
+    position: fixed;
+    top: 120px;
+    left: 32px;
+    height: auto;
+    z-index: 99;
+}
+
+.display-brand-sidebar h4 {
+    margin-top: 0;
+    color: var(--main-color);
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.display-brand-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.display-brand-sidebar li {
+    margin-bottom: 10px;
+}
+
+.display-brand-link {
+    display: block;
+    padding: 10px 16px;
+    border-radius: 12px;
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.display-brand-link.active,
+.display-brand-link:hover {
+    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+    color: #fff;
+}
+
+.keyboard-brand-sidebar,
+.mouse-brand-sidebar,
+.mousepad-brand-sidebar,
+.accessory-brand-sidebar {
+    min-width: 180px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(127, 83, 172, 0.08);
+    margin: 43px 24px 32px 32px;
+    padding: 18px 12px 18px 12px;
+    position: fixed;
+    top: calc(50vh - 200px);
+    left: 32px;
+    height: auto;
+    z-index: 99;
+}
+
+.keyboard-brand-sidebar h4,
+.mouse-brand-sidebar h4,
+.mousepad-brand-sidebar h4,
+.accessory-brand-sidebar h4 {
+    margin-top: 0;
+    color: var(--main-color);
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.keyboard-brand-sidebar ul,
+.mouse-brand-sidebar ul,
+.mousepad-brand-sidebar ul,
+.accessory-brand-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.keyboard-brand-sidebar li,
+.mouse-brand-sidebar li,
+.mousepad-brand-sidebar li,
+.accessory-brand-sidebar li {
+    margin-bottom: 10px;
+}
+
+.keyboard-brand-link,
+.mouse-brand-link,
+.mousepad-brand-link,
+.accessory-brand-link {
+    display: block;
+    padding: 10px 16px;
+    border-radius: 12px;
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.keyboard-brand-link.active,
+.keyboard-brand-link:hover,
+.mouse-brand-link.active,
+.mouse-brand-link:hover,
+.mousepad-brand-link.active,
+.mousepad-brand-link:hover,
+.accessory-brand-link.active,
+.accessory-brand-link:hover {
+    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+    color: #fff;
+}
+
+@media (max-width: 800px) {
+    .main-nav ul {
+        flex-wrap: wrap;
+        gap: 0.2rem;
+        padding: 0 4px;
+    }
+
+    .main-nav .nav-link {
+        padding: 10px 10px;
+        font-size: 0.95rem;
+    }
+
+    .main-nav #cart-btn {
+        padding: 8px 10px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .brand-sidebar {
+        display: none;
+    }
+
+    .product-list {
+        margin-left: 0;
+    }
+
+    .banner-content {
+        flex-direction: column;
+        gap: 18px;
+        padding: 18px 6vw;
+    }
+
+    .banner-img {
+        width: 90vw;
+        max-width: 100%;
+    }
+
+    .banner-text {
+        text-align: center;
+    }
+
+    .keyboard-brand-sidebar,
+    .mouse-brand-sidebar,
+    .mousepad-brand-sidebar,
+    .accessory-brand-sidebar {
+        display: none;
+    }
+}

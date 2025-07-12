@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin người dùng</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main style="display:flex;justify-content:center;align-items:center;height:100vh;background:#f7f6fa;">
+        <div
+            style="background:#fff;padding:32px 28px;border-radius:18px;box-shadow:0 4px 24px rgba(127,83,172,0.10);min-width:320px;">
+            <h2 style="text-align:center;color:var(--main-color);margin-bottom:18px;">Thông tin người dùng</h2>
+            <div id="user-info" style="font-size:1.1rem;"></div>
+            <div style="text-align:center;margin-top:18px;">
+                <button id="logout-btn" class="checkout-btn" style="width:100%;">Đăng xuất</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Hiển thị thông tin người dùng từ localStorage
+        var user = localStorage.getItem('user');
+        var infoDiv = document.getElementById('user-info');
+        if (user) {
+            var u = JSON.parse(user);
+            infoDiv.innerHTML = `<b>Tên đăng nhập:</b> ${u.username || ''}<br>
+            <b>Email:</b> ${u.email || ''}<br>
+            <b>Số điện thoại:</b> ${u.phone || ''}<br>
+            <b>Địa chỉ:</b> ${u.address || ''}`;
+        } else {
+            infoDiv.innerHTML = '<span style="color:red;">Bạn chưa đăng nhập!</span>';
+        }
+        document.getElementById('logout-btn').onclick = function () {
+            localStorage.removeItem('user');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+
+</html>

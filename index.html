@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop shop</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./acssets/themify-icons/themify-icons.css">
+</head>
+
+<body>
+    <header>
+        <h1>Laptop shop</h1>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#" class="nav-link active"><span class="ti ti-home"></span> Home</a></li>
+                <li><a href="#laptop" class="nav-link"><span class="ti ti-laptop"></span> Laptop</a></li>
+                <li><a href="#man-hinh" class="nav-link"><span class="ti ti-desktop"></span> Màn hình</a></li>
+                <li><a href="#ban-phim" class="nav-link"><span class="ti ti-keyboard"></span> Bàn phím</a></li>
+                <li><a href="#chuot" class="nav-link"><span class="ti ti-mouse"></span> Chuột</a></li>
+                <li><a href="#lot-chuot" class="nav-link"><span class="ti ti-layout"></span> Lót chuột</a></li>
+                <li><a href="#phu-kien" class="nav-link"><span class="ti ti-package"></span> Phụ kiện</a></li>
+                <li><a href="contact.html" class="nav-link"><span class="ti ti-headphone-alt"></span> Contact</a></li>
+                <li style="margin-left:auto"><button id="cart-btn"><span class="ti ti-shopping-cart"></span> Giỏ hàng
+                        (<span id="cart-count">0</span>)</button>
+                </li>
+                <li><a href="user.html" class="nav-link"><span class="ti ti-user"></span> User</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="banner-ad" id="home-banner">
+            <div class="banner-content">
+                <img src="./acssets/img/laptop-info/banner.jpg" alt="Banner quảng cáo laptop" class="banner-img">
+                <div class="banner-text">
+                    <h2>SIÊU KHUYẾN MÃI LAPTOP 2025</h2>
+                    <p>Giảm giá lên đến <span style="color:#ff5722;font-weight:bold;">40%</span> cho tất cả các dòng
+                        laptop
+                        mới nhất!</p>
+                    <a href="#laptop" class="banner-btn">Xem sản phẩm</a>
+                </div>
+            </div>
+        </section>
+        <aside class="brand-sidebar" style="display:none;">
+            <h3>Hãng máy tính</h3>
+            <ul>
+                <li><a href="#brand-all" class="brand-link active">Tất cả</a></li>
+                <li><a href="#brand-dell" class="brand-link">Dell</a></li>
+                <li><a href="#brand-apple" class="brand-link">Apple</a></li>
+                <li><a href="#brand-asus" class="brand-link">ASUS</a></li>
+                <li><a href="#brand-hp" class="brand-link">HP</a></li>
+                <li><a href="#brand-msi" class="brand-link">MSI</a></li>
+                <li><a href="#brand-lenovo" class="brand-link">Lenovo</a></li>
+            </ul>
+        </aside>
+        <aside class="display-brand-sidebar" style="display:none;"></aside>
+        <aside class="keyboard-brand-sidebar" style="display:none;"></aside>
+        <aside class="mouse-brand-sidebar" style="display:none;"></aside>
+        <aside class="mousepad-brand-sidebar" style="display:none;"></aside>
+        <aside class="accessory-brand-sidebar" style="display:none;"></aside>
+        <section id="products" class="product-list" style="display:none;">
+            <!-- Danh sách sản phẩm sẽ được render ở đây -->
+        </section>
+        <section id="cart-modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-cart" class="close">&times;</span>
+                <h2>Giỏ hàng của bạn</h2>
+                <ul id="cart-items"></ul>
+                <div class="cart-total">Tổng: <span id="cart-total">0</span> VND</div>
+                <form id="checkout-form">
+                    <h3>Chọn phương thức thanh toán</h3>
+                    <div class="payment-methods">
+                        <label><input type="radio" name="payment" value="cod" checked> Thanh toán khi nhận hàng (COD)
+                        </label><br>
+                        <label><input type="radio" name="payment" value="bank"> Chuyển khoản ngân hàng</label><br>
+                        <label><input type="radio" name="payment" value="momo"> Ví MoMo</label><br>
+                        <label><input type="radio" name="payment" value="credit"> Thẻ tín dụng/Ghi nợ</label>
+                    </div>
+                    <button type="submit" class="checkout-btn">Thanh toán</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Cửa Hàng Máy Tính</p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>
