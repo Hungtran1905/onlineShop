@@ -12,69 +12,151 @@
     <main style="display:flex;justify-content:center;align-items:center;height:100vh;background:#f7f6fa;">
         <div
             style="background:#fff;padding:32px 28px;border-radius:18px;box-shadow:0 4px 24px rgba(127,83,172,0.10);min-width:320px;">
-            <h2 style="text-align:center;color:var(--main-color);margin-bottom:18px;">Đăng ký tài khoản</h2>
-            <form id="register-form">
-                <div style="margin-bottom:14px;">
-                    <label for="register-username">Tên đăng nhập</label><br>
-                    <input type="text" id="register-username" required
-                        style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
+            <!-- Form đăng ký tài khoản với xác thực email -->
+            <div id="register-container">
+                <form id="register-form">
+                    <h2 style="text-align:center;color:var(--main-color);margin-bottom:18px;">Đăng ký tài khoản</h2>
+                    <div style="margin-bottom:14px;">
+                        <label for="register-username">Tên đăng nhập</label><br>
+                        <input type="text" id="register-username" name="username" required
+                            style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
+                    </div>
+                    <div style="margin-bottom:14px;">
+                        <label for="register-password">Mật khẩu</label><br>
+                        <input type="password" id="register-password" name="password" required
+                            style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
+                    </div>
+                    <div style="margin-bottom:14px;">
+                        <label for="register-email">Email</label><br>
+                        <input type="email" id="register-email" name="email" required
+                            style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
+                    </div>
+                    <div style="margin-bottom:14px;">
+                        <label for="register-phone">Số điện thoại</label><br>
+                        <input type="tel" id="register-phone" name="phone" required pattern="[0-9]{10,11}"
+                            style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
+                    </div>
+                    <div style="margin-bottom:18px;">
+                        <label for="register-address">Địa chỉ</label><br>
+                        <input type="text" id="register-address" name="address" required
+                            style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
+                    </div>
+                    <button type="submit" class="checkout-btn" style="width:100%;">Đăng ký</button>
+                </form>
+                <div id="verify-section" style="display:none;">
+                    <p>Mã xác nhận đã được gửi tới email của bạn. Vui lòng nhập mã xác nhận:</p>
+                    <input type="text" id="verify-code" placeholder="Nhập mã xác nhận" />
+                    <button id="verify-btn">Xác nhận</button>
+                    <div id="verify-message"></div>
                 </div>
-                <div style="margin-bottom:14px;">
-                    <label for="register-password">Mật khẩu</label><br>
-                    <input type="password" id="register-password" required
-                        style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
+                <div id="register-message"></div>
+                <div style="text-align:center;margin-top:18px;">
+                    <span>Đã có tài khoản?</span>
+                    <a href="login.html" style="color:var(--main-color);font-weight:bold;">Đăng nhập</a>
                 </div>
-                <div style="margin-bottom:14px;">
-                    <label for="register-repassword">Nhập lại mật khẩu</label><br>
-                    <input type="password" id="register-repassword" required
-                        style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
-                </div>
-                <div style="margin-bottom:14px;">
-                    <label for="register-email">Email</label><br>
-                    <input type="email" id="register-email" required
-                        style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
-                </div>
-                <div style="margin-bottom:14px;">
-                    <label for="register-phone">Số điện thoại</label><br>
-                    <input type="tel" id="register-phone" required pattern="[0-9]{10,11}"
-                        style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
-                </div>
-                <div style="margin-bottom:18px;">
-                    <label for="register-address">Địa chỉ</label><br>
-                    <input type="text" id="register-address" required
-                        style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;">
-                </div>
-                <button type="submit" class="checkout-btn" style="width:100%;">Đăng ký</button>
-            </form>
-            <div style="text-align:center;margin-top:18px;">
-                <span>Đã có tài khoản?</span>
-                <a href="login.html" style="color:var(--main-color);font-weight:bold;">Đăng nhập</a>
             </div>
         </div>
     </main>
     <script>
+        const registerForm = document.getElementById('register-form');
+        const verifySection = document.getElementById('verify-section');
+        const verifyBtn = document.getElementById('verify-btn');
+        const registerMessage = document.getElementById('register-message');
+        const verifyMessage = document.getElementById('verify-message');
+        let currentUsername = '';
+
         // Giả lập đăng ký tài khoản
-        document.getElementById('register-form').onsubmit = function (e) {
+        registerForm.onsubmit = async (e) => {
             e.preventDefault();
-            const username = document.getElementById('register-username').value;
-            const password = document.getElementById('register-password').value;
-            const repassword = document.getElementById('register-repassword').value;
-            const email = document.getElementById('register-email').value;
-            const phone = document.getElementById('register-phone').value;
-            const address = document.getElementById('register-address').value;
-            if (!username || !password || !repassword || !email || !phone || !address) {
-                alert('Vui lòng nhập đầy đủ thông tin!');
+            registerMessage.textContent = '';
+            const formData = new FormData(registerForm);
+            const data = Object.fromEntries(formData.entries());
+            // Gửi thông tin đăng ký lên backend để nhận mã xác nhận
+            const res = await fetch('http://localhost:3000/api/send-verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            if (res.ok && result.status === 'verify_required') {
+                currentUsername = data.username;
+                registerForm.style.display = 'none';
+                verifySection.style.display = 'block';
+            } else {
+                registerMessage.textContent = result.message || 'Đăng ký thất bại!';
+            }
+        };
+
+        verifyBtn.onclick = async () => {
+            verifyMessage.textContent = '';
+            const code = document.getElementById('verify-code').value.trim();
+            if (!code) {
+                verifyMessage.textContent = 'Vui lòng nhập mã xác nhận!';
                 return;
             }
-            if (password !== repassword) {
-                alert('Mật khẩu nhập lại không khớp!');
-                return;
+            // Gửi mã xác nhận lên backend để hoàn tất đăng ký
+            const res = await fetch('http://localhost:3000/api/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: currentUsername, code })
+            });
+            const result = await res.json();
+            if (res.ok && result.status === 'success') {
+                verifyMessage.textContent = 'Đăng ký thành công! Bạn có thể đăng nhập.';
+                verifyBtn.disabled = true;
+            } else {
+                verifyMessage.textContent = result.message || 'Xác nhận thất bại!';
             }
-            // Lưu thông tin tài khoản vào localStorage (giả lập)
-            localStorage.setItem('user', JSON.stringify({ username, email, phone, address }));
-            window.location.href = 'index.html';
-        }
+        };
     </script>
+    <style>
+        #register-container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px #b39ddb33;
+            padding: 32px 24px;
+        }
+
+        #register-form,
+        #verify-section {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        #register-form input,
+        #verify-section input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        #register-form button,
+        #verify-btn {
+            background: linear-gradient(90deg, #7f53ac, #657ced);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #register-form button:hover,
+        #verify-btn:hover {
+            background: #7f53ac;
+        }
+
+        #register-message,
+        #verify-message {
+            color: #d32f2f;
+            font-size: 0.98rem;
+            min-height: 20px;
+        }
+    </style>
 </body>
 
 </html>
